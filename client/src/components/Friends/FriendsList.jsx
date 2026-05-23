@@ -12,45 +12,38 @@ export default function FriendsList() {
   }, [])
 
   async function removeFriend(userId) {
-    const r = await fetch(`/api/friends/${userId}`, {
-      method: 'DELETE',
-      credentials: 'include',
-    })
+    const r = await fetch(`/api/friends/${userId}`, { method: 'DELETE', credentials: 'include' })
     if (r.ok) setFriends(f => f.filter(u => u.id !== userId))
   }
 
   return (
-    <div className="bg-card border border-border rounded-lg p-4">
-      <h3 className="font-glitch text-xl text-white mb-3">
-        your beings ({friends.length})
-      </h3>
+    <div>
+      <h3 className="text-sm font-semibold mb-3">friends ({friends.length})</h3>
 
       {loading ? (
         <div className="space-y-2">
-          {[...Array(3)].map((_, i) => (
-            <div key={i} className="h-9 bg-dim rounded animate-pulse" />
-          ))}
+          {[...Array(3)].map((_, i) => <div key={i} className="h-8 bg-gray-100 rounded" />)}
         </div>
       ) : friends.length === 0 ? (
-        <p className="text-sm text-muted">no friends yet. the void is yours alone.</p>
+        <p className="text-sm text-gray-400">no friends yet</p>
       ) : (
         <ul className="space-y-2">
           {friends.map(u => (
             <li key={u.id} className="flex items-center gap-2">
               {u.avatar_url ? (
-                <img src={u.avatar_url} alt="" className="w-7 h-7 rounded-full shrink-0" />
+                <img src={u.avatar_url} alt="" className="w-7 h-7 rounded-full" />
               ) : (
-                <div className="w-7 h-7 rounded-full bg-dim shrink-0 flex items-center justify-center text-xs">
+                <div className="w-7 h-7 rounded-full border border-gray-200 flex items-center justify-center text-xs text-gray-400">
                   {u.name?.[0] || '?'}
                 </div>
               )}
-              <div className="min-w-0 flex-1">
-                <p className="text-sm text-white truncate">{u.name}</p>
-                <p className="text-xs text-muted">score: {u.score}</p>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm truncate">{u.name}</p>
+                <p className="text-xs text-gray-400">{u.score}</p>
               </div>
               <button
                 onClick={() => removeFriend(u.id)}
-                className="text-xs text-dim hover:text-hot transition-colors shrink-0"
+                className="text-xs text-gray-300 hover:text-black transition-colors"
               >
                 remove
               </button>

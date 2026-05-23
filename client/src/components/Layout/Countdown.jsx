@@ -6,19 +6,12 @@ function randomFutureMs() {
 
 export default function Countdown() {
   const targetRef = useRef(randomFutureMs())
-  const [timeLeft, setTimeLeft] = useState(null)
-  const [label] = useState(() => {
-    const labels = ['until nothing', 'until it happens', 'until ???', 'until the thing', 'until end of beige']
-    return labels[Math.floor(Math.random() * labels.length)]
-  })
+  const [timeLeft, setTimeLeft] = useState('')
 
   useEffect(() => {
     const tick = () => {
       const diff = targetRef.current - Date.now()
-      if (diff <= 0) {
-        targetRef.current = randomFutureMs()
-        return
-      }
+      if (diff <= 0) { targetRef.current = randomFutureMs(); return }
       const s = Math.floor(diff / 1000)
       const m = Math.floor(s / 60)
       const h = Math.floor(m / 60)
@@ -29,12 +22,9 @@ export default function Countdown() {
     return () => clearInterval(id)
   }, [])
 
-  if (!timeLeft) return null
-
   return (
-    <div className="flex items-center gap-1.5 text-xs text-muted">
-      <span>{label}:</span>
-      <span className="font-glitch text-base text-hot">{timeLeft}</span>
-    </div>
+    <span className="text-xs text-gray-400 font-mono">
+      until ???: <span className="text-black">{timeLeft}</span>
+    </span>
   )
 }

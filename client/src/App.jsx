@@ -11,8 +11,8 @@ function ProtectedLayout() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-dark flex items-center justify-center">
-        <div className="font-glitch text-4xl text-neon animate-pulse">BLORP</div>
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="font-mono text-2xl tracking-widest">BLORP</div>
       </div>
     )
   }

@@ -5,12 +5,12 @@ export default function ScoreFloater({ floaters }) {
         <div
           key={id}
           className="absolute animate-float-up text-center"
-          style={{ left: `${x}%`, top: '120px' }}
+          style={{ left: `${x}%`, top: '100px' }}
         >
-          <div className={`font-glitch text-3xl font-bold ${delta >= 0 ? 'text-neon text-glow-neon' : 'text-hot text-glow-hot'}`}>
+          <div className="font-mono text-2xl font-bold">
             {delta >= 0 ? '+' : ''}{delta}
           </div>
-          <div className="text-xs text-muted max-w-40 leading-tight mt-0.5 bg-darker/80 px-1.5 py-0.5 rounded">
+          <div className="text-xs text-gray-500 max-w-36 leading-tight mt-0.5 bg-white/90 px-1.5 py-0.5 border border-gray-200">
             {reason}
           </div>
         </div>

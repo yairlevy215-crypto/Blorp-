@@ -1,24 +1,14 @@
-import { useState, useEffect } from 'react'
 import { BREAKING_NEWS } from '../../utils/absurdContent'
 
+const text = BREAKING_NEWS.join('   ·   ')
+
 export default function NewsTicker() {
-  const [headline, setHeadline] = useState(0)
-
-  useEffect(() => {
-    const t = setInterval(() => {
-      setHeadline(h => (h + 1) % BREAKING_NEWS.length)
-    }, 35000)
-    return () => clearInterval(t)
-  }, [])
-
-  const text = BREAKING_NEWS.slice(headline).concat(BREAKING_NEWS.slice(0, headline)).join('   ·   ')
-
   return (
-    <div className="bg-hot text-dark text-xs font-bold py-1 overflow-hidden whitespace-nowrap flex items-center">
-      <span className="shrink-0 bg-dark text-hot px-2 py-0.5 mr-2 font-glitch text-sm tracking-wider">
-        BREAKING
+    <div className="border-b border-gray-200 bg-white overflow-hidden whitespace-nowrap flex items-center h-7">
+      <span className="shrink-0 text-xs font-bold uppercase tracking-widest px-3 border-r border-gray-200 h-full flex items-center">
+        Breaking
       </span>
-      <div className="animate-marquee inline-block">
+      <div className="animate-marquee inline-block text-xs text-gray-500 pl-6">
         {text}
       </div>
     </div>

@@ -13,11 +13,8 @@ export default function GlobalVibe() {
   }, [socket])
 
   return (
-    <div className="flex items-center gap-1.5 text-xs text-muted">
-      <span>global vibe:</span>
-      <span className="font-glitch text-base text-neon animate-vibe-pulse uppercase tracking-wider">
-        {vibe}
-      </span>
-    </div>
+    <span className="text-xs text-gray-400">
+      vibe: <span className="text-black font-medium">{vibe}</span>
+    </span>
   )
 }
