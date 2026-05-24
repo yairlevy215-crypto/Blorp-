@@ -1,0 +1,97 @@
+name: Swiss Army Knife — 100 Features Demo
+
+on:
+  push:
+    paths:
+      - 'swissknife.py'
+      - '.github/workflows/swissknife.yml'
+  workflow_dispatch:
+    inputs:
+      feature:
+        description: 'Feature name to run (leave blank for demo)'
+        required: false
+        default: ''
+      args:
+        description: 'Arguments for the feature'
+        required: false
+        default: ''
+
+jobs:
+  demo:
+    name: Run 100-Feature Demo
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: List all 100 features
+        run: python swissknife.py --list
+
+      - name: Run custom feature (if provided)
+        if: ${{ github.event.inputs.feature != '' }}
+        run: python swissknife.py "${{ github.event.inputs.feature }}" ${{ github.event.inputs.args }}
+
+      - name: Demo — Text tools
+        if: ${{ github.event.inputs.feature == '' }}
+        run: |
+          echo "=== #1  reverse ===" && python swissknife.py reverse "Hello, World!"
+          echo "=== #2  palindrome ===" && python swissknife.py palindrome "A man a plan a canal Panama"
+          echo "=== #6  rot13 ===" && python swissknife.py rot13 "Hello GitHub"
+          echo "=== #9  title ===" && python swissknife.py title "the quick brown fox"
+          echo "=== #10 snake-case ===" && python swissknife.py snake-case "MyVariableName"
+
+      - name: Demo — Math tools
+        if: ${{ github.event.inputs.feature == '' }}
+        run: |
+          echo "=== #18 factorial ===" && python swissknife.py factorial 10
+          echo "=== #19 fibonacci ===" && python swissknife.py fibonacci 12
+          echo "=== #20 is-prime ===" && python swissknife.py is-prime 97
+          echo "=== #26 to-roman ===" && python swissknife.py to-roman 2026
+          echo "=== #30 percent ===" && python swissknife.py percent 37 200
+
+      - name: Demo — Date/Time tools
+        if: ${{ github.event.inputs.feature == '' }}
+        run: |
+          echo "=== #31 now ===" && python swissknife.py now
+          echo "=== #32 timestamp ===" && python swissknife.py timestamp
+          echo "=== #36 is-leap ===" && python swissknife.py is-leap 2024
+
+      - name: Demo — Fun & Games
+        if: ${{ github.event.inputs.feature == '' }}
+        run: |
+          echo "=== #41 dice ===" && python swissknife.py dice 20 3
+          echo "=== #42 coin ===" && python swissknife.py coin
+          echo "=== #43 magic8 ===" && python swissknife.py magic8
+          echo "=== #45 joke ===" && python swissknife.py joke
+          echo "=== #47 gen-password ===" && python swissknife.py gen-password 20
+          echo "=== #48 gen-uuid ===" && python swissknife.py gen-uuid
+          echo "=== #53 lorem ===" && python swissknife.py lorem 2
+
+      - name: Demo — Encoding & Hashing
+        if: ${{ github.event.inputs.feature == '' }}
+        run: |
+          echo "=== #56 b64-encode ===" && python swissknife.py b64-encode "Hello GitHub Actions"
+          echo "=== #60 md5 ===" && python swissknife.py md5 "swissknife"
+          echo "=== #62 sha256 ===" && python swissknife.py sha256 "100 features"
+
+      - name: Demo — Visual & Formatting
+        if: ${{ github.event.inputs.feature == '' }}
+        run: |
+          echo "=== #76 box ===" && python swissknife.py box "Hello from GitHub Actions!"
+          echo "=== #78 progress-bar ===" && python swissknife.py progress-bar 88
+          echo "=== #79 star-rating ===" && python swissknife.py star-rating 4.5
+
+      - name: Demo — Converters
+        if: ${{ github.event.inputs.feature == '' }}
+        run: |
+          echo "=== #90 morse ===" && python swissknife.py morse "SOS"
+          echo "=== #91 pig-latin ===" && python swissknife.py pig-latin "hello world"
+          echo "=== #92 nato ===" && python swissknife.py nato "HELP"
+          echo "=== #93 celsius-to-f ===" && python swissknife.py celsius-to-f 100
+          echo "=== #95 km-to-miles ===" && python swissknife.py km-to-miles 42.195
+          echo "=== #99 bmi ===" && python swissknife.py bmi 70 1.75
