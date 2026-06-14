@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מודעת RTM – Elite × מונדיאל 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Heebo', 'David', Arial, sans-serif;
+    background: #f5f5f5;
+    color: #222;
+    direction: rtl;
+  }
+
+  /* ========== PAGE WRAPPER ========== */
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 20px auto;
+    background: white;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    padding: 0;
+    page-break-after: always;
+  }
+
+  /* ========== HEADER ========== */
+  .header {
+    background: linear-gradient(135deg, #003f91 0%, #0056c7 50%, #1a73e8 100%);
+    padding: 18px 30px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header h1 {
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .header .subtitle {
+    color: #c9deff;
+    font-size: 11px;
+    margin-top: 2px;
+  }
+  .header .badge {
+    background: #ffd700;
+    color: #003f91;
+    font-weight: 900;
+    font-size: 11px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  /* ========== RTM AD SECTION ========== */
+  .ad-container {
+    position: relative;
+    background: linear-gradient(160deg, #001f5e 0%, #003399 40%, #0055cc 70%, #0070e0 100%);
+    padding: 0;
+    overflow: hidden;
+    min-height: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* decorative circles */
+  .ad-container::before {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.08);
+    top: -180px; left: -160px;
+  }
+  .ad-container::after {
+    content: '';
+    position: absolute;
+    width: 380px; height: 380px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,215,0,0.15);
+    bottom: -140px; right: -100px;
+  }
+
+  .stars-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle, rgba(255,255,255,0.6) 1px, transparent 1px),
+      radial-gradient(circle, rgba(255,255,255,0.3) 1px, transparent 1px);
+    background-size: 60px 60px, 30px 30px;
+    background-position: 0 0, 15px 15px;
+    opacity: 0.15;
+  }
+
+  .ad-inner {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 30px 40px 24px;
+    width: 100%;
+  }
+
+  .event-tag {
+    display: inline-block;
+    background: #ffd700;
+    color: #003f91;
+    font-size: 10px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 3px 14px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+  }
+
+  .brand-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .brand-logo .logo-box {
+    background: #e8002d;
+    color: white;
+    font-size: 28px;
+    font-weight: 900;
+    padding: 4px 18px;
+    border-radius: 6px;
+    letter-spacing: 1px;
+    font-style: italic;
+  }
+  .brand-logo .times-sign {
+    color: #ffd700;
+    font-size: 22px;
+    font-weight: 900;
+  }
+  .brand-logo .fifa-box {
+    background: white;
+    color: #003f91;
+    font-size: 13px;
+    font-weight: 900;
+    padding: 6px 12px;
+    border-radius: 6px;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .ad-headline {
+    color: white;
+    font-size: 38px;
+    font-weight: 900;
+    line-height: 1.1;
+    margin: 12px 0 6px;
+    text-shadow: 0 3px 12px rgba(0,0,0,0.5);
+  }
+  .ad-headline span {
+    color: #ffd700;
+  }
+
+  .ad-subline {
+    color: #c9deff;
+    font-size: 15px;
+    font-weight: 400;
+    margin-bottom: 18px;
+  }
+
+  /* chocolate-ball graphic */
+  .choc-ball-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 10px 0 20px;
+  }
+  .goal-post {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .goal-post .bar {
+    width: 80px;
+    height: 6px;
+    background: white;
+    border-radius: 3px;
+    position: relative;
+  }
+  .goal-post .bar::before,
+  .goal-post .bar::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 6px;
+    height: 40px;
+    background: white;
+    border-radius: 3px;
+  }
+  .goal-post .bar::before { right: 0; }
+  .goal-post .bar::after { left: 0; }
+
+  .choc-ball {
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle at 35% 35%, #6b3a1f, #3d1f0a);
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5), inset 0 -6px 12px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #8b4e22;
+  }
+  .choc-ball::before {
+    content: 'Elite';
+    color: #ffd700;
+    font-size: 10px;
+    font-weight: 900;
+    font-style: italic;
+  }
+  /* pentagon patches on ball */
+  .choc-ball::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 50% 20%, rgba(255,255,255,0.08) 8px, transparent 8px),
+      radial-gradient(circle at 25% 60%, rgba(255,255,255,0.06) 10px, transparent 10px),
+      radial-gradient(circle at 75% 55%, rgba(255,255,255,0.06) 8px, transparent 8px);
+  }
+
+  .goal-text {
+    font-size: 42px;
+    font-weight: 900;
+    color: #ffd700;
+    text-shadow: 0 0 20px rgba(255,215,0,0.6), 0 3px 8px rgba(0,0,0,0.5);
+    letter-spacing: -1px;
+    line-height: 1;
+    transform: rotate(-5deg);
+    display: inline-block;
+  }
+
+  .ad-tagline {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 10px;
+    padding: 10px 24px;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0 auto;
+    max-width: 420px;
+    backdrop-filter: blur(4px);
+  }
+  .ad-tagline span {
+    color: #ffd700;
+  }
+
+  .ad-footer-bar {
+    background: #e8002d;
+    color: white;
+    text-align: center;
+    padding: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  /* ========== ANALYSIS SECTION ========== */
+  .analysis-section {
+    padding: 28px 36px 30px;
+  }
+
+  .analysis-section h2 {
+    font-size: 17px;
+    font-weight: 900;
+    color: #003f91;
+    border-bottom: 3px solid #003f91;
+    padding-bottom: 6px;
+    margin-bottom: 18px;
+    text-align: center;
+  }
+
+  .context-box {
+    background: #eef4ff;
+    border-right: 4px solid #003f91;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin-bottom: 22px;
+    font-size: 12px;
+    line-height: 1.7;
+    color: #222;
+  }
+  .context-box strong {
+    color: #003f91;
+  }
+
+  .strategy-block {
+    margin-bottom: 22px;
+    page-break-inside: avoid;
+  }
+  .strategy-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .strategy-num {
+    background: #003f91;
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 900;
+    flex-shrink: 0;
+  }
+  .strategy-name {
+    font-size: 13px;
+    font-weight: 900;
+    color: #003f91;
+  }
+  .strategy-type {
+    font-size: 11px;
+    color: #888;
+    font-weight: 400;
+  }
+  .strategy-body {
+    font-size: 12px;
+    line-height: 1.8;
+    color: #333;
+    padding-right: 38px;
+    text-align: justify;
+  }
+  .strategy-body em {
+    color: #e8002d;
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    margin: 18px 0;
+  }
+
+  /* Brand value section */
+  .brand-values {
+    background: #fff8e1;
+    border: 1px solid #ffd700;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 22px;
+    font-size: 12px;
+    line-height: 1.8;
+  }
+  .brand-values h3 {
+    font-size: 13px;
+    color: #7a5c00;
+    font-weight: 900;
+    margin-bottom: 6px;
+  }
+
+  /* footer */
+  .doc-footer {
+    background: #003f91;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 10px;
+    opacity: 0.85;
+  }
+
+  @media print {
+    body { background: white; }
+    .page { box-shadow: none; margin: 0; width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <div class="h1" style="color:white; font-size:15px; font-weight:700;">
+        משימת הערכה חלופית בשיווק – מודעת RTM
+      </div>
+      <div class="subtitle">בית הספר הריאלי העברי בחיפה · יוני 2026</div>
+    </div>
+    <div class="badge">🏆 מונדיאל 2026</div>
+  </div>
+
+  <!-- ===== THE RTM AD ===== -->
+  <div class="ad-container">
+    <div class="stars-bg"></div>
+    <div class="ad-inner">
+
+      <div class="event-tag">⚽ RTM · FIFA WORLD CUP 2026</div>
+
+      <div class="brand-logo">
+        <div class="logo-box">Elite</div>
+        <div class="times-sign">×</div>
+        <div class="fifa-box">FIFA<br>WORLD<br>CUP 2026</div>
+      </div>
+
+      <div class="ad-headline">כשהעולם כולו <span>עוצר</span></div>
+      <div class="ad-headline" style="font-size:32px; margin-top:0;">הטעם הישראלי <span>לא מפסיק</span></div>
+
+      <div class="choc-ball-row">
+        <div class="goal-post"><div class="bar"></div></div>
+        <div class="goal-text">גול! 🎉</div>
+        <div class="choc-ball"></div>
+        <div class="goal-post"><div class="bar"></div></div>
+      </div>
+
+      <div class="ad-tagline">
+        4 מיליארד עיניים על הכדור —<br>
+        <span>הלב הישראלי על שוקולד Elite</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="ad-footer-bar">
+    Elite שטראוס | "הרגע שייזכר לעד – עם הטעם שתמיד שם"
+  </div>
+
+  <!-- ===== ANALYSIS ===== -->
+  <div class="analysis-section">
+
+    <h2>ניתוח אסטרטגי – 4 האסטרטגיות במודעה</h2>
+
+    <!-- Context -->
+    <div class="context-box">
+      <strong>האירוע:</strong> גביע העולם FIFA 2026, שנפתח ב-11 ביוני 2026 בארה"ב, קנדה ומקסיקו — אירוע הספורט הגדול ביותר בעולם. הוא יצר גל רגשי עולמי של אחווה, גאווה לאומית ושמחה, ועורר שיח ציבורי נרחב גם בישראל.&nbsp;
+      <strong>החברה:</strong> שטראוס – Elite, מותג שוקולד ישראלי מוביל הפועל בשוק הישראלי מעל 70 שנה ומזוהה עם ישראליות, חגיגה ומתוק ביתי.
+    </div>
+
+    <!-- Brand values -->
+    <div class="brand-values">
+      <h3>ערכי המותג של Elite (לפי מודל ערכי המותג):</h3>
+      ערכים פונקציונליים: איכות, מתיקות, מגוון מוצרים (שוקולד, ממתקים, קפה) ·
+      ערכים רגשיים: שמחה, נוסטלגיה, חגיגיות, חמימות ·
+      ערכים חברתיים: ישראליות, שיתוף, מסורת ·
+      <strong>חיבור לאירוע:</strong> המונדיאל מייצג אחדות עולמית ושמחה קולקטיבית — בדיוק ערכי Elite; האחד מחזק את השני.
+    </div>
+
+    <!-- Strategy 1 -->
+    <div class="strategy-block">
+      <div class="strategy-title">
+        <div class="strategy-num">1</div>
+        <div>
+          <div class="strategy-name">גישת השיווק החברתי</div>
+          <div class="strategy-type">סוג א' – גישה שיווקית</div>
+        </div>
+      </div>
+      <div class="strategy-body">
+        גישת השיווק החברתי (Societal Marketing) מרחיבה את גישת השיווק הקלאסית ומוסיפה לה שכבה של אחריות חברתית ורגישות לצרכי הכלל. בגישה זו, הארגון שואף לא רק לספק את צרכי הצרכן הפרטי, אלא גם לקדם ערכים חברתיים רחבים יותר. במודעה זו, Elite אינה מוכרת רק שוקולד — היא מקדמת את <em>ערך האחדות, השיתוף והשמחה הקולקטיבית</em>. הסלוגן "4 מיליארד עיניים על הכדור — הלב הישראלי על שוקולד Elite" מדגיש ש-Elite היא חלק מרגע גלובלי משותף לכל האנושות, תוך הדגשת הזהות הישראלית הייחודית. גישה זו מחזקת את תדמית המותג כמותג שמחובר לחברה ולרגעי החיים המשמעותיים, ולא רק למכירת מוצר. ביטוי זה גם מגשר בין הצרכן הישראלי לבין אירוע עולמי, ויוצר תחושת שייכות ושגרירות ישראלית בזירה הגלובלית.
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Strategy 2 -->
+    <div class="strategy-block">
+      <div class="strategy-title">
+        <div class="strategy-num">2</div>
+        <div>
+          <div class="strategy-name">שיווק מתואם (Synchromarketing)</div>
+          <div class="strategy-type">סוג ב' – פתרונות שיווקיים למצבי ביקוש</div>
+        </div>
+      </div>
+      <div class="strategy-body">
+        שיווק מתואם מתאים לסיטואציה בה הביקוש אינו קבוע אלא משתנה בהתאם לזמן ולאירועים — לפעמים גבוה מאוד ולפעמים נמוך. מטרת השיווק המתואם היא <em>לתאם את הביקוש לאורך הזמן</em>, לנצל שיאים ולמנוע בזבוז. מונדיאל FIFA 2026 יוצר שיא ביקוש חד ומובהק: מיליוני צרכנים ישראלים צופים במשחקים, מארחים חברים, מכינים מסיבות — וצורכים ממתקים וחטיפים בהיקפים גבוהים בהרבה מהרגיל. מודעת ה-RTM של Elite מנצלת בדיוק את שיא הביקוש הזה: היא מתואמת לזמן האירוע ומכוונת את הצרכן לקנות Elite דווקא עכשיו, כחלק מחוויית הצפייה. כך Elite מסנכרנת את מאמץ השיווק שלה עם הביקוש הטבעי הגואה, ומשיגה מקסימום אפקטיביות בדיוק ברגע שהצרכן פתוח לרכישה.
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Strategy 3 -->
+    <div class="strategy-block">
+      <div class="strategy-title">
+        <div class="strategy-num">3</div>
+        <div>
+          <div class="strategy-name">מסר אמוציונאלי</div>
+          <div class="strategy-type">סוג ג' – מסר</div>
+        </div>
+      </div>
+      <div class="strategy-body">
+        המסר האמוציונאלי פונה לרגשות הצרכן ולא לשכלו, ומשתמש בכלים כגון שמחה, הומור, גאווה, נוסטלגיה, משפחה ואחווה. מודעת Elite בחרה במסר אמוציונאלי חזק: <em>האויר שבין הגול לחגיגה — המתוק תמיד שם</em>. הקריאה "גול! 🎉" בשילוב עם הכדור-שוקולד והוויזואל של שערים יוצרת רגע של אדרנלין ושמחה. הצרכן חווה רגשית את אחד הרגעים האהובים בחייו (גול בכדורגל) ובאותו רגע שם נוכחת Elite — ויוצרת <em>עיגון רגשי</em> חזק: שוקולד Elite = שמחה = גול = ניצחון. לא מדובר בפרסומת שמציגה תכונות כמו טעם, מרכיבים או מחיר, אלא פרסומת שיוצרת חיבור לב לשוקולד. הגישה הזו מגבירה נאמנות מותג ומייצרת תחושה ש-Elite היא חלק מהזיכרון הרגשי של הצרכן.
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Strategy 4 -->
+    <div class="strategy-block">
+      <div class="strategy-title">
+        <div class="strategy-num">4</div>
+        <div>
+          <div class="strategy-name">שיווק אותנטי (Authentic Marketing)</div>
+          <div class="strategy-type">סוג ד' – שיווק מבוסס סקרנות והשפעה</div>
+        </div>
+      </div>
+      <div class="strategy-body">
+        שיווק אותנטי מבוסס על אמינות, שקיפות וחיבור אמיתי בין המותג לצרכן ולרגע. הוא שונה מפרסום "מדולל" שנראה מלאכותי — הוא נוגע בנקודות אמת. מודעת Elite מיישמת שיווק אותנטי בכמה רמות: ראשית, האירוע <em>אמיתי ולא מפוברק</em> — המונדיאל 2026 קיים ומתרחש ממש עכשיו, ו-Elite "קופצת על הגל" באופן מיידי ורלוונטי. שנית, הסלוגן "הטעם שתמיד שם" מדגיש שהמותג הוא חלק אמיתי מהחיים הישראלים — לא פרסומת זרה. שלישית, אין במודעה הבטחות מוגזמות: היא לא אומרת ש-Elite היא הטובה בעולם, אלא שהיא נמצאת ברגעי השמחה. <em>אותנטיות זו בונה אמון</em> ומחזקת את ההזדהות של הצרכן עם המותג, במיוחד בדור ה-Z שחשדן כלפי פרסום מסורתי ומעדיף תוכן ישיר ואמיתי.
+      </div>
+    </div>
+
+  </div><!-- /analysis-section -->
+
+  <div class="doc-footer">
+    מודעת RTM | Elite × FIFA World Cup 2026 | בית הספר הריאלי העברי בחיפה | יוני 2026
+  </div>
+
+</div><!-- /page -->
+
+</body>
+</html>
