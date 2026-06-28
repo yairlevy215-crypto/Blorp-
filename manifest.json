@@ -1,0 +1,17 @@
+{
+  "name": "Blorp – קליסטניקס",
+  "short_name": "Blorp",
+  "description": "תוכנית אימוני קליסטניקס מותאמת אישית",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0f0f13",
+  "theme_color": "#7c6af5",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💪</text></svg>",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    }
+  ]
+}

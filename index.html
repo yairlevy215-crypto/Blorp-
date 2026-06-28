@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Blorp – תוכנית קליסטניקס אישית</title>
+  <meta name="description" content="תוכנית אימוני קליסטניקס מותאמת אישית עם מעקב התקדמות, סטריק ותזונה">
+  <meta name="theme-color" content="#0f0f13">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Blorp">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     ONBOARDING WIZARD
+══════════════════════════════════ -->
+<div id="onboarding">
+  <div class="onboarding-inner">
+
+    <div class="onboarding-hero">
+      <div class="logo">💪</div>
+      <h1>Blorp</h1>
+      <p>תוכנית קליסטניקס מותאמת אישית</p>
+    </div>
+
+    <!-- Step dots -->
+    <div class="step-indicator">
+      <div class="step-dot active"></div>
+      <div class="step-dot"></div>
+      <div class="step-dot"></div>
+      <div class="step-dot"></div>
+      <div class="step-dot"></div>
+      <div class="step-dot"></div>
+      <div class="step-dot"></div>
+    </div>
+
+    <!-- ── Step 0: Basic info ── -->
+    <div class="onboarding-step active">
+      <div class="step-title">שלום! בואנו נכיר</div>
+      <div class="step-subtitle">המידע הזה יעזור לנו לבנות תוכנית מדויקת עבורך</div>
+
+      <div class="form-group">
+        <label>גיל</label>
+        <input type="number" id="ob-age" placeholder="25" min="12" max="90" inputmode="numeric">
+      </div>
+      <div class="form-group">
+        <label>משקל (ק"ג)</label>
+        <input type="number" id="ob-weight" placeholder="70" step="0.1" inputmode="decimal">
+      </div>
+      <div class="form-group">
+        <label>גובה (ס"מ)</label>
+        <input type="number" id="ob-height" placeholder="175" inputmode="numeric">
+      </div>
+      <div class="form-group">
+        <label>מגדר</label>
+        <select id="ob-gender">
+          <option value="male">זכר</option>
+          <option value="female">נקבה</option>
+        </select>
+      </div>
+      <button class="btn btn-primary btn-full" onclick="nextStep()">המשך →</button>
+    </div>
+
+    <!-- ── Step 1: Current fitness ── -->
+    <div class="onboarding-step">
+      <div class="step-title">רמת כושר נוכחית</div>
+      <div class="step-subtitle">היה כנה – זה רק ישפר את התוכנית שלך!</div>
+
+      <div class="form-group">
+        <label>פעילות אירובית נוכחית</label>
+        <select id="ob-cardio">
+          <option value="sedentary">לא פעיל בכלל (ישיבה רוב היום)</option>
+          <option value="light">קל (הליכה מדי פעם, פחות מ-5,000 צעדים)</option>
+          <option value="moderate" selected>בינוני (5,000–10,000 צעדים ביום)</option>
+          <option value="active">פעיל (ריצה/אופניים/ספורט 3-4×שבוע)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>ניסיון בכוח / משקלים / קליסטניקס</label>
+        <select id="ob-strength">
+          <option value="none">אין ניסיון</option>
+          <option value="beginner">מתחיל (עד שנה)</option>
+          <option value="intermediate">בינוני (1-3 שנים)</option>
+          <option value="advanced">מתקדם (3+ שנים)</option>
+        </select>
+      </div>
+      <div style="display:flex;gap:10px">
+        <button class="btn btn-secondary" onclick="prevStep()">← חזור</button>
+        <button class="btn btn-primary" style="flex:1" onclick="nextStep()">המשך →</button>
+      </div>
+    </div>
+
+    <!-- ── Step 2: Goal ── -->
+    <div class="onboarding-step">
+      <div class="step-title">מה המטרה שלך?</div>
+      <div class="step-subtitle">בחר את המטרה העיקרית – ניתן לשנות בהמשך</div>
+
+      <div class="goal-card" data-goal="toning">
+        <span class="goal-icon">🔥</span>
+        <div>
+          <h3>חיטוב</h3>
+          <p>שריפת שומן, הגדרת שרירים, ירידה במשקל</p>
+        </div>
+      </div>
+
+      <div class="goal-card" data-goal="mass">
+        <span class="goal-icon">💪</span>
+        <div>
+          <h3>מסה</h3>
+          <p>הגדלת מסת שריר, עלייה במשקל בריאה</p>
+        </div>
+      </div>
+
+      <div class="goal-card" data-goal="strength">
+        <span class="goal-icon">⚡</span>
+        <div>
+          <h3>חיזוק</h3>
+          <p>כוח מירבי, ביצועים, מיומנויות קליסטניקס</p>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:10px;margin-top:16px">
+        <button class="btn btn-secondary" onclick="prevStep()">← חזור</button>
+        <button class="btn btn-primary" style="flex:1" onclick="nextStep()">המשך →</button>
+      </div>
+    </div>
+
+    <!-- ── Step 3: Target weight change (optional) ── -->
+    <div class="onboarding-step">
+      <div class="step-title">יעד שינוי משקל</div>
+      <div class="step-subtitle">אופציונלי – ישמש לכיול התוכנית</div>
+
+      <div id="ob-target-group" style="display:none">
+        <div class="form-group">
+          <label id="ob-target-label">כמה ק"ג תרצה לרדת?</label>
+          <input type="number" id="ob-target-change" placeholder="למשל: 5" step="0.5" inputmode="decimal">
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:16px">
+        <p style="font-size:0.85rem">📌 אם לא תגדיר יעד, התוכנית תתוכנן לשיפור מרבי בטווח הזמן המחושב.</p>
+      </div>
+
+      <div style="display:flex;gap:10px">
+        <button class="btn btn-secondary" onclick="prevStep()">← חזור</button>
+        <button class="btn btn-primary" style="flex:1" onclick="nextStep()">המשך →</button>
+      </div>
+    </div>
+
+    <!-- ── Step 4: Schedule ── -->
+    <div class="onboarding-step">
+      <div class="step-title">לוח זמנים</div>
+      <div class="step-subtitle">כמה זמן יש לך לאמן?</div>
+
+      <div class="form-group">
+        <label>ימי אימון בשבוע: <strong id="ob-days-display">3</strong></label>
+        <input type="range" id="ob-days" min="1" max="7" value="3" oninput="document.getElementById('ob-days-display').textContent=this.value">
+      </div>
+
+      <div class="form-group">
+        <label>משך אימון ביום</label>
+        <select id="ob-duration">
+          <option value="20">20 דקות</option>
+          <option value="30">30 דקות</option>
+          <option value="45" selected>45 דקות</option>
+          <option value="60">60 דקות</option>
+          <option value="75">75 דקות</option>
+          <option value="90">90 דקות</option>
+          <option value="120">2 שעות</option>
+          <option value="150">2.5 שעות</option>
+          <option value="180">3 שעות</option>
+          <option value="210">3.5 שעות+</option>
+        </select>
+      </div>
+
+      <div style="display:flex;gap:10px">
+        <button class="btn btn-secondary" onclick="prevStep()">← חזור</button>
+        <button class="btn btn-primary" style="flex:1" onclick="nextStep()">המשך →</button>
+      </div>
+    </div>
+
+    <!-- ── Step 5: Equipment ── -->
+    <div class="onboarding-step">
+      <div class="step-title">ציוד זמין</div>
+      <div class="step-subtitle">סמן את מה שיש לך. ניתן לבצע גם ללא ציוד!</div>
+
+      <div class="chip-group" id="ob-equipment-chips">
+        <div class="chip" data-eq="pullup_bar">🔧 מוט מתח</div>
+        <div class="chip" data-eq="parallel_bars">⚙️ מקביליים</div>
+        <div class="chip" data-eq="dip_bars">🏗️ מוטות דיפ</div>
+        <div class="chip" data-eq="rings">⭕ טבעות</div>
+        <div class="chip" data-eq="bar_low">📏 מוט/ספסל נמוך</div>
+        <div class="chip" data-eq="resistance_bands">🟡 גומיות</div>
+        <div class="chip" data-eq="jump_rope">🪢 חבל קפיצה</div>
+      </div>
+
+      <div class="card" style="margin-top:14px;margin-bottom:14px">
+        <p style="font-size:0.82rem">💡 ללא ציוד? לא נורא! יש המון תרגילים מעולים עם משקל גוף בלבד.</p>
+      </div>
+
+      <div style="display:flex;gap:10px">
+        <button class="btn btn-secondary" onclick="prevStep()">← חזור</button>
+        <button class="btn btn-primary" style="flex:1" onclick="nextStep()">המשך →</button>
+      </div>
+    </div>
+
+    <!-- ── Step 6: Nutrition ── -->
+    <div class="onboarding-step">
+      <div class="step-title">המלצות תזונה</div>
+      <div class="step-subtitle">האם תרצה לקבל המלצות תזונה מותאמות אישית?</div>
+
+      <div style="display:flex;gap:10px;margin-bottom:14px">
+        <div class="chip" id="ob-nutrition-yes" style="flex:1;justify-content:center" onclick="this.classList.add('selected');document.getElementById('ob-nutrition-no').classList.remove('selected')">✅ כן, בבקשה!</div>
+        <div class="chip" id="ob-nutrition-no" style="flex:1;justify-content:center" onclick="this.classList.add('selected');document.getElementById('ob-nutrition-yes').classList.remove('selected')">❌ לא תודה</div>
+      </div>
+
+      <div class="card" style="margin-bottom:16px">
+        <p style="font-size:0.82rem">🔬 החישוב מבוסס על נוסחת Mifflin-St Jeor המדעית, בהתאם למטרתך ורמת פעילותך.</p>
+        <p style="font-size:0.78rem;color:var(--text3);margin-top:6px">* המלצות אלו הן כלליות. לייעוץ רפואי פנה לדיאטן/ית מוסמך/ת.</p>
+      </div>
+
+      <div style="display:flex;gap:10px">
+        <button class="btn btn-secondary" onclick="prevStep()">← חזור</button>
+        <button class="btn btn-primary btn-full" style="flex:1" onclick="nextStep()">🚀 צור את התוכנית שלי!</button>
+      </div>
+    </div>
+
+  </div><!-- /onboarding-inner -->
+</div><!-- /onboarding -->
+
+
+<!-- ══════════════════════════════════
+     MAIN APP
+══════════════════════════════════ -->
+<div id="main-app" style="display:none" class="app">
+
+  <!-- Top bar -->
+  <header id="topbar">
+    <span class="brand">💪 Blorp</span>
+    <div class="streak-badge" id="topbar-streak">🔥 0 ימים</div>
+  </header>
+
+  <!-- Pages -->
+
+  <!-- Dashboard -->
+  <div class="page active" id="page-dashboard">
+    <div class="hero-card">
+      <div class="streak-ring" id="dash-streak-ring" style="--pct:0">
+        <div class="streak-ring-inner">
+          <span id="dash-streak-num" style="font-size:1.6rem;font-weight:900;color:var(--accent4)">0</span>
+          <span style="font-size:0.65rem;color:var(--text3)">ימים</span>
+        </div>
+      </div>
+      <h2 style="margin-bottom:2px">הסטריק שלך 🔥</h2>
+      <p id="dash-week-label" style="font-size:0.85rem">שבוע 1</p>
+      <p id="dash-phase-label" style="font-size:0.78rem;color:var(--accent2);margin-top:2px"></p>
+    </div>
+
+    <div id="dash-today"></div>
+    <div id="dash-milestones"></div>
+    <div id="dash-quicklog" style="margin-top:4px"></div>
+  </div>
+
+  <!-- Workout -->
+  <div class="page" id="page-workout">
+    <h2 style="margin-bottom:16px">🏋️ אימון היום</h2>
+    <div id="workout-container"></div>
+  </div>
+
+  <!-- Progress -->
+  <div class="page" id="page-progress">
+    <h2 style="margin-bottom:16px">📊 התקדמות</h2>
+
+    <div class="card" style="text-align:center;margin-bottom:16px">
+      <div style="font-size:3rem;font-weight:900;color:var(--accent4)" id="prog-streak">0</div>
+      <div style="font-size:0.82rem;color:var(--text3)">יום סטריק רצוף 🔥</div>
+    </div>
+
+    <div id="prog-metrics"></div>
+
+    <div class="chart-wrap">
+      <h3 style="margin-bottom:12px">⚖️ גרף משקל</h3>
+      <canvas id="weight-chart"></canvas>
+      <button class="btn btn-sm btn-primary" onclick="openWeightModal()" style="margin-top:12px">+ רשום משקל</button>
+    </div>
+
+    <div class="section-title">🏆 הישגים</div>
+    <div id="prog-achievements"></div>
+
+    <div class="section-title" style="margin-top:8px">🎯 אתגרים</div>
+    <div id="prog-challenges"></div>
+  </div>
+
+  <!-- Program -->
+  <div class="page" id="page-program">
+    <div id="program-container"></div>
+  </div>
+
+  <!-- Nutrition -->
+  <div class="page" id="page-nutrition">
+    <h2 style="margin-bottom:16px">🥗 תזונה</h2>
+    <div id="nutrition-container"></div>
+  </div>
+
+  <!-- Settings -->
+  <div class="page" id="page-settings">
+    <h2 style="margin-bottom:16px">⚙️ הגדרות</h2>
+    <div id="settings-container"></div>
+  </div>
+
+  <!-- Bottom nav -->
+  <nav id="bottom-nav">
+    <button class="nav-btn active" data-page="dashboard">
+      <span class="nav-icon">🏠</span>
+      <span>בית</span>
+    </button>
+    <button class="nav-btn" data-page="workout">
+      <span class="nav-icon">💪</span>
+      <span>אימון</span>
+    </button>
+    <button class="nav-btn" data-page="program">
+      <span class="nav-icon">📅</span>
+      <span>תוכנית</span>
+    </button>
+    <button class="nav-btn" data-page="progress">
+      <span class="nav-icon">📊</span>
+      <span>התקדמות</span>
+    </button>
+    <button class="nav-btn" data-page="nutrition">
+      <span class="nav-icon">🥗</span>
+      <span>תזונה</span>
+    </button>
+    <button class="nav-btn" data-page="settings">
+      <span class="nav-icon">⚙️</span>
+      <span>הגדרות</span>
+    </button>
+  </nav>
+
+</div><!-- /main-app -->
+
+<!-- Toast container -->
+<div id="toast-container" class="toast-container"></div>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<!-- App scripts -->
+<script src="js/data.js"></script>
+<script src="js/program.js"></script>
+<script src="js/store.js"></script>
+<script src="js/app.js"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  }
+</script>
+
+</body>
+</html>
